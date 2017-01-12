@@ -11,7 +11,7 @@ class quiz_model extends CI_Model
 
     function get_quizes($place_id){
 
-        $this->db->select("question,c_ans,w_ans_1,w_ans_2,w_ans_3,quiz_img");
+        $this->db->select("*");
         $this->db->from('quiz_table');
         $this->db->where('place_id',$place_id);
         $query = $this->db->get();
