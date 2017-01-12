@@ -31,4 +31,14 @@ class user_model extends CI_Model
 
 
     }
+
+    function get_user_score($user_id){
+
+        $this->db->select("user_point");
+        $this->db->from('user_table');
+        $this->db->where('user_email',$user_id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
 }

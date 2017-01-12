@@ -83,4 +83,37 @@ class user_account extends CI_Controller
         echo json_encode(array("message" => "updated"));
 
     }
+
+    function user_score_update()
+    {
+        $details = file_get_contents("php://input");
+        $json = json_decode($details);
+
+        $user_email = $json->user_email;
+        $user_score = $json->user_point;
+
+        $data = array(
+            'user_point' => $user_score,
+        );
+
+        $this->user_model->update_user($user_email,$data);
+        header('Content-Type: application/json');
+        echo json_encode(array("message" => "updated"));
+
+    }
+
+    function user_get_score(){
+
+        {
+            $details = file_get_contents("php://input");
+            $json = json_decode($details);
+
+            $user_email = $json->user_email;
+
+            $score =  $this->user_model->get_user_score($user_email);
+
+            header('Content-Type: application/json');
+            echo json_encode(array("score" => $score));
+        }
+    }
 }
